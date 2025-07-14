@@ -2,16 +2,24 @@ package com.example.api_app
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import kotlinx.coroutines.runBlocking
 import okhttp3.Headers
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var pokemonBall: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,14 +30,50 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        // setting up the Pokemon Ball Image
+        pokemonBall = findViewById(R.id.pokeImg)
+        pokemonBall.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.pokeball))
+
+        // making a button to update the pokemon image
+        var generateButton = findViewById<Button>(R.id.generate)
+
+
+        generateButton.setOnClickListener {
+            updatePokemon()
+        }
+
     }
 
-    private fun fetchPokemonImage() {
+    private fun updatePokemon() {
         val client = AsyncHttpClient()
 
-        client["https://pokeapi.github.io/pokekotlin/api/#-1752852885%2FPackages%2F1558683979", object : JsonHttpResponseHandler() {
-            override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
+        // getting a random number to use as an id
+        val randomID = Random.nextInt(1, 1026).toString()
+        Log.d("randomID", randomID)
+
+        client[("https://pokeapi.co/api/v2/pokemon/"+randomID), object : JsonHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
                 Log.d("Pokemon", "response successful")
+
+                // updating pokemon image
+//                val pokemonImgURL = json.jsonObject.get("sprites").getString("default-front")
+                val pokemonImgURL = json.jsonObject.getJSONObject("sprites").getString("front_default")
+
+//                val pokemonImgURL = json.jsonObject.getString("front_default")
+//                val spriteUrl = json.jsonObject.sprites.front_default // Get the default front sprite
+                Log.d("pokemonImgURL", "pokemon image URL set: $pokemonImgURL")
+                val pokemonImageOutput = findViewById<ImageView>(R.id.pokeImg)
+                Glide.with(this@MainActivity)
+                    .load(pokemonImgURL)
+                    .fitCenter()
+                    .into(pokemonImageOutput)
+
+                // updating pokemon name
+                val pokemonName = json.jsonObject.getString("name").replaceFirstChar { it.titlecase() }
+                Log.d("pokemonName", "pokemon name set: $pokemonName")
+                val pokemonNameOutput = findViewById<TextView>(R.id.name)
+                pokemonNameOutput.text = pokemonName
+
             }
 
             override fun onFailure(
@@ -42,22 +86,5 @@ class MainActivity : AppCompatActivity() {
             }
         }]
     }
-
-//    fun main() = runBlocking {
-//        with(PokeApi) {
-//            runCatching {
-//                // Get a list of Pokémon species
-//                val list = getPokemonSpeciesList(0, 10)
-//
-//                for (handle in list.results) {
-//                    // Get each species by its handle
-//                    val species = handle.get()
-//                    println("Species: $species")
-//                }
-//            }.onFailure { e ->
-//                println("Error: ${e.message}")
-//            }
-//        }
-//    }
 
 }

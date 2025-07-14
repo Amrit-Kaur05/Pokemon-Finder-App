@@ -10,43 +10,44 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="266dp"
+        android:layout_height="116dp"
         android:text="Pokemon Generator!"
         android:textColor="#a82028"
-        android:textSize="25sp"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.045" />
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="632dp"
+        android:layout_width="321dp"
+        android:layout_height="69dp"
         android:text="Click the generate button to generate a new Pokemon!"
         android:textColor="#c85048"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.438"
+        app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintVertical_bias="0.025" />
 
     <Button
         android:id="@+id/generate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="147dp"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        android:text="Generate!"
         android:backgroundTint="#70b8f0"
+        android:textSize="20sp"
+        android:text="Generate!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
         app:layout_constraintVertical_bias="0.0" />
@@ -56,26 +57,27 @@
         android:layout_width="154dp"
         android:layout_height="137dp"
         android:layout_marginStart="32dp"
+        android:contentDescription="Pokemon ball"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/name"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/generate"
-        app:layout_constraintVertical_bias="0.035"
+        app:layout_constraintVertical_bias="0.114"
         tools:srcCompat="@drawable/pokeball" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="182dp"
         android:layout_height="61dp"
-        android:layout_marginEnd="32dp"
-        android:text="Generate a Pokemon!"
+        android:text=""
         android:textColor="#c85048"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.259" />
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
