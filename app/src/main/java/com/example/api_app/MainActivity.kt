@@ -74,6 +74,20 @@ class MainActivity : AppCompatActivity() {
                 val pokemonNameOutput = findViewById<TextView>(R.id.name)
                 pokemonNameOutput.text = pokemonName
 
+                // updating pokemon abilities
+                var amountAbilities = json.jsonObject.getJSONArray("abilities").length()
+                Log.d("pokemonAbilitiesCount", "pokemon ability count: $amountAbilities")
+                val pokemonAbilityOutput = findViewById<TextView>(R.id.abilities)
+                pokemonAbilityOutput.text = ""
+                var allAbilities = "Abilities: \n"
+
+                for (i in 0 until amountAbilities){
+                    Log.d("i", "pokemon count: $i")
+                    allAbilities = allAbilities + "\n" + pokemonAbilityOutput.getText().toString() + json.jsonObject.getJSONArray("abilities").getJSONObject(i).getJSONObject("ability").getString("name").replaceFirstChar { it.titlecase() }
+
+                }
+
+                pokemonAbilityOutput.text = allAbilities
             }
 
             override fun onFailure(
@@ -85,6 +99,27 @@ class MainActivity : AppCompatActivity() {
                 Log.d("Pokemon Error", errorResponse)
             }
         }]
+
+//        client[("https://pokeapi.co/api/v2/characteristic/"+randomID), object : JsonHttpResponseHandler() {
+//            override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
+//                Log.d("Pokemon", "response successful")
+//
+//                // updating the description with the pokemon's characteristic
+//                var pokemonDescription = json.jsonObject
+//
+//                Log.d("pokemonDescription", "pokemon desc set: $pokemonDescription")
+//
+//            }
+//
+//            override fun onFailure(
+//                statusCode: Int,
+//                headers: Headers?,
+//                errorResponse: String,
+//                throwable: Throwable?
+//            ) {
+//                Log.d("Pokemon Error", errorResponse)
+//            }
+//        }]
     }
 
 }
