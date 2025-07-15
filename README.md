@@ -36,22 +36,19 @@ My chosen API for this project is PokeAPI (Pokémon API).
 
 Here's a video / GIF that demos all of the app's implemented features:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Demo' width='' alt='Video Demo' />
+<img src='https://i.imgur.com/aSEYbsh.mp4' title='Video Demo' width='' alt='Video Demo' />
 
-GIF created with **your chosen GIF tool**
+Link to view: https://imgur.com/a/TRqRdPI
 
-<!-- Recommended tools:
-- [Kap](https://getkap.co/) for macOS
-- [ScreenToGif](https://www.screentogif.com/) for Windows
-- [peek](https://github.com/phw/peek) for Linux. -->
+GIF created with Imgur.
 
 ## Notes
 
-Here's a place for any other notes on the app, it's creation process, or what you learned this unit!
+This app was a great way to learn about APIs, parsing JSON data, and adding usability to apps!
 
 ## License
 
-Copyright **yyyy** **your name**
+Copyright 2025 Amrit Kaur
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
